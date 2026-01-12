@@ -121,7 +121,7 @@ Phone: ${phone}
 
 ${orderText()}`;
 
-  window.open(`https://wa.me/91XXXXXXXXXX?text=${encodeURIComponent(msg)}`);
+  window.open(`https://wa.me/917795566237?text=${encodeURIComponent(msg)}`);
   clearCart();
 }
 
