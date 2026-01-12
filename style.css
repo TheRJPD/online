@@ -106,7 +106,7 @@ h2, h3 {
   border-radius: 20px;
   font-size: 14px;
 }
-<!-- -->
+
 button.order {
   background: green;
   color: #fff;
@@ -121,6 +121,15 @@ input {
   padding: 8px;
   width: 100%;
   margin: 6px 0;
+}
+
+.home-logo {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.home-logo img {
+  width: 160px;
 }
 
 footer {
