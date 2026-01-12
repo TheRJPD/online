@@ -15,7 +15,8 @@ function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   updateMenuQty();
   renderCart();
-  updateFloatingCartTotal();
+<!--  updateFloatingCartTotal(); -->
+  updateCartTotalUI();
 }
 
 function updateFloatingCartTotal() {
@@ -104,6 +105,27 @@ function clearCart() {
   saveCart();
 }
 
+function updateCartTotalUI() {
+  let total = 0;
+
+  Object.keys(cart).forEach(item => {
+    total += menuData[item].price * cart[item];
+  });
+
+  const totalEl = document.getElementById("cartTotal");
+  const cartBtn = document.getElementById("floatingCart");
+
+  if (totalEl) totalEl.innerText = `₹${total}`;
+
+  if (cartBtn) {
+    if (total === 0) {
+      cartBtn.classList.add("floating-cart-hidden");
+    } else {
+      cartBtn.classList.remove("floating-cart-hidden");
+    }
+  }
+}
+
 
 function sendWhatsApp() {
   const name = document.getElementById("name").value;
@@ -150,6 +172,7 @@ ${orderText()}`;
 document.addEventListener("DOMContentLoaded", () => {
   updateMenuQty();            // sync menu quantities
   renderCart();               // render cart if on cart page
-  updateFloatingCartTotal();  // update floating ₹ total
+  <! --updateFloatingCartTotal();  // update floating ₹ total-->
+  updateCartTotalUI();
 });
 
