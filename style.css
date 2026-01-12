@@ -149,7 +149,14 @@ body::before {
   background-image: url("watermark.png");
   background-repeat: no-repeat;
   background-position: center;  /* Center of the page */
-  background-size: 300px;      /* Adjust as needed */
-  opacity: 0.05;                /* Make it subtle */
+  background-size: 500px;      /* Adjust as needed */
+  opacity: 0.01;                /* Make it subtle */
   z-index: -1;                  /* Behind all content */
+}
+
+@media (max-width: 768px) {
+  body::before {
+    background-size: 200px;   /* smaller for phones */
+    opacity: 0.04;
+  }
 }
