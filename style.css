@@ -61,24 +61,30 @@ h2, h3 {
   padding: 10px 0;
 }
 <!-- -->
-/* Floating Cart */
-.floating-cart {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #8b0000;
-  color: #fff;
-  text-decoration: none;
-  padding: 12px 14px;
-  border-radius: 50px;
+
+.navbar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  font-weight: bold;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 1000;
+  background: #8b0000;
+  padding: 10px 16px;
 }
 
+.nav-left a {
+  color: #fff;
+  margin-right: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-cart {
+  background: #fff;
+  color: #8b0000;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
 .cart-total {
   background: #fff;
   color: #8b0000;
