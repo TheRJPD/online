@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Menu</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="menu.html">Menu</a>
+  <a href="order.html">Order Cart</a>
+</nav>
+
+<section>
+  <h2>Menu</h2>
+
+  <h3>Starter Veg</h3>
+  <div class="item">
+    Paneer Tikka ₹300
+    <div class="qty-control">
+      <button class="qty-btn" onclick="decrease('Paneer Tikka')">−</button>
+      <span class="qty-number" id="qty-Paneer Tikka">0</span>
+      <button class="qty-btn" onclick="increase('Paneer Tikka')">+</button>
+    </div>
+  </div>
+
+  <h3>Starter Non-Veg</h3>
+  <div class="item">
+    Chicken Tikka ₹350
+    <div class="qty-control">
+      <button class="qty-btn" onclick="decrease('Chicken Tikka')">−</button>
+      <span class="qty-number" id="qty-Chicken Tikka">0</span>
+      <button class="qty-btn" onclick="increase('Chicken Tikka')">+</button>
+    </div>
+  </div>
+
+</section>
+
+</body>
+</html>
 
