@@ -1,25 +1,57 @@
-/* General Styles */
+/* --- General Layout --- */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: #fafafa;
-  position: relative; /* Essential for watermark positioning */
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures body spans full height */
 }
 
+/* --- Fixed Navigation Bar --- */
 nav {
-  background: #8b0000;
-  padding: 10px;
+  background: #8b0000; /* Deep Red Theme */
+  padding: 8px 15px;
   text-align: center;
-  position: relative;
-  z-index: 10; /* Keeps nav above the watermark */
+  position: fixed;    /* Makes Nav Static at Top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;      /* Stays above all content */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.nav-logo {
+  height: 35px;       /* Fits the nav bar height */
+  width: auto;
+  vertical-align: middle;
 }
 
 nav a {
   color: #fff;
-  margin: 0 12px;
+  margin: 0 10px;
   text-decoration: none;
   font-weight: bold;
+}
+
+/* --- Scrollable Content Wrapper --- */
+.content-wrapper {
+  flex: 1;            /* Pushes footer to bottom */
+  margin-top: 60px;   /* Space for Fixed Nav */
+  margin-bottom: 50px;/* Space for Fixed Footer */
+  position: relative;
+  z-index: 1;
+  padding-bottom: 20px;
 }
 
 section {
@@ -30,7 +62,25 @@ h2, h3 {
   color: #8b0000;
 }
 
-/* Item and Cart Styles */
+/* --- Watermark Configuration --- */
+/* Applied to .content-wrapper so it stays below the nav bar */
+.content-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("watermark.png"); /* */
+  background-repeat: no-repeat;
+  background-position: center 100px;
+  background-size: 400px;
+  opacity: 0.05;      /* Subtle appearance */
+  z-index: -1;        /* Behind text/images */
+  pointer-events: none;
+}
+
+/* --- Menu & Cart Items --- */
 .item, .cart-item {
   display: flex;
   justify-content: space-between;
@@ -67,23 +117,10 @@ h2, h3 {
   padding: 10px 0;
 }
 
-/* UI Elements */
-.qr-section {
-  text-align: center;
-  margin: 40px 0;
-}
-
-.menu-qr {
-  margin-top: 10px;
-  width: 200px;
-  height: 200px;
-  border: 4px solid #8b0000;
-  border-radius: 10px;
-}
-
+/* --- Floating Cart Toggle --- */
 .floating-cart-top {
   position: fixed;
-  top: 3px;
+  top: 10px;
   right: 16px;
   background: #ffffff;
   color: #8b0000;
@@ -92,13 +129,14 @@ h2, h3 {
   font-weight: bold;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  z-index: 9999;
+  z-index: 10000;      /* Above the Nav bar */
 }
 
 .floating-cart-hidden {
-  display: none;
+  display: none; /* */
 }
 
+/* --- Buttons & Inputs --- */
 button.order {
   background: green;
   color: #fff;
@@ -111,75 +149,66 @@ button.order {
 
 input {
   padding: 8px;
-  width: 100%;
+  width: 90%;
   margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
-/*
+
+/* --- Logo & QR Sections --- */
 .home-logo {
-  text-align: left;
+  text-align: center;
   margin: 20px 0;
 }
 
 .home-logo img {
-  width: 100px;
-}
-*/
-
-/* Navigation Logo Styling */
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  width: 200px;
 }
 
-.nav-logo {
-  height: 40px; /* Adjust height to fit your nav bar */
-  vertical-align: middle;
-}
-
-/* Nav(menu bar) padding */
-nav {
-  background: #8b0000;
-  padding: 5px 10px;
+.qr-section {
   text-align: center;
+  margin: 30px 0;
 }
 
+.menu-qr {
+  margin-top: 10px;
+  width: 180px;
+  height: 180px;
+  border: 4px solid #8b0000;
+  border-radius: 10px;
+}
+
+/* --- Fixed Footer --- */
 footer {
   text-align: center;
-  padding: 15px;
+  padding: 12px;
   background: #eee;
-}
-
-/* Container for content below nav */
-.content-wrapper {
-  position: relative;
-  min-height: calc(100vh - 50px);
-  z-index: 1;
-}
-
-/* Watermark applied only to the content area */
-.content-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
+  position: fixed;    /* Makes Footer Static at Bottom */
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-image: url("watermark.png");
-  background-repeat: no-repeat;
-  background-position: center 400px;
-  background-size: 400px;
-  opacity: 0.4; /* Adjusted for better visibility */
-  z-index: -1;
-  pointer-events: none;
+  z-index: 9999;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
 }
 
+/* --- Mobile Adjustments --- */
 @media (max-width: 768px) {
-  body::before {
-    top: 100px;             /* Account for wrapped nav links on mobile */
+  .nav-container {
+    gap: 8px;
+  }
+  
+  nav a {
+    font-size: 13px;
+    margin: 0 5px;
+  }
+
+  .content-wrapper::before {
     background-size: 250px;
-    opacity: 0.05;
+    opacity: 0.08;
+  }
+
+  .content-wrapper {
+    margin-top: 80px; /* More space for wrapped mobile nav */
   }
 }
