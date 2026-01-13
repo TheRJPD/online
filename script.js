@@ -11,37 +11,42 @@ const menuData = {
 
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  updateMenuQty();
-  renderCart();
-  updateFloatingCartTotal();
-  updateCartTotalUI();
-}
-
-function updateFloatingCartTotal() {
+// Helper: Calculate Grand Total
+function calculateTotal() {
   let total = 0;
-  Object.keys(cart).forEach(item => {
-    total += menuData[item].price * cart[item];
+  Object.keys(cart).forEach(key => {
+    const match = key.match(/(.*) \((.*)\)/);
+    if (match) {
+      const itemName = match[1];
+      const portion = match[2];
+      if (menuData[itemName]) {
+        total += menuData[itemName].portions[portion] * cart[key];
+      }
+    }
   });
-
-  // Update the side floating cart total
-  const floatingTotalEl = document.getElementById("cartTotal");
-  if (floatingTotalEl) floatingTotalEl.innerText = `₹${total}`;
-
-  // Update the navigation cart total
-  const navTotalEl = document.getElementById("navCartTotal");
-  if (navTotalEl) navTotalEl.innerText = `₹${total}`;
+  return total;
 }
 
-//
-const cartBtn = document.getElementById("floatingCart");
-if (cartBtn) {
-    total === 0 ? cartBtn.classList.add("floating-cart-hidden") : cartBtn.classList.remove("floating-cart-hidden");
+// Update UI (Nav Total and Floating Cart Visibility)
+function updateUI() {
+  const total = calculateTotal();
+  const cartBtn = document.getElementById("floatingCart");
+  const cartTotalDisplay = document.getElementById("cartTotal");
+
+  if (cartTotalDisplay) cartTotalDisplay.innerText = `₹${total}`;
+  
+  if (cartBtn) {
+    total > 0 ? cartBtn.classList.remove("hidden") : cartBtn.classList.add("hidden");
   }
 }
 
-// Accepts 'portion' (Half/Full/KG)
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  updateUI();
+  updateMenuQtyDisplay();
+  if (document.getElementById("cartItems")) renderCart();
+}
+
 function increase(item, portion) {
   const key = `${item} (${portion})`;
   cart[key] = (cart[key] || 0) + 1;
@@ -50,13 +55,14 @@ function increase(item, portion) {
 
 function decrease(item, portion) {
   const key = `${item} (${portion})`;
-  if (!cart[key]) return;
-  cart[key]--;
-  if (cart[key] <= 0) delete cart[key];
-  saveCart();
+  if (cart[key] > 0) {
+    cart[key]--;
+    if (cart[key] === 0) delete cart[key];
+    saveCart();
+  }
 }
 
-function updateMenuQty() {
+function updateMenuQtyDisplay() {
   Object.keys(menuData).forEach(item => {
     Object.keys(menuData[item].portions).forEach(portion => {
       const el = document.getElementById(`qty-${item}-${portion}`);
@@ -68,143 +74,65 @@ function updateMenuQty() {
   });
 }
 
-function updateCartTotalUI() {
-  let total = 0;
-  Object.keys(cart).forEach(key => {
-    // Extracts item name and portion from "Item (Portion)"
-    const match = key.match(/(.*) \((.*)\)/);
-    if (match) {
-      const itemName = match[1];
-      const portion = match[2];
-      const price = menuData[itemName].portions[portion];
-      total += price * cart[key];
-    }
-  });
-  
 function renderCart() {
   const el = document.getElementById("cartItems");
   if (!el) return;
 
   if (Object.keys(cart).length === 0) {
-    el.innerHTML = "Cart is empty";
+    el.innerHTML = "<div class='empty-msg'>Your cart feels light. Add some royalty to it!</div>";
     return;
   }
 
-  let total = 0;
-  el.innerHTML = "";
+  let html = "";
+  Object.keys(cart).forEach(key => {
+    const match = key.match(/(.*) \((.*)\)/);
+    const itemName = match[1];
+    const portion = match[2];
+    const price = menuData[itemName].portions[portion];
+    const qty = cart[key];
 
-  Object.keys(cart).forEach(item => {
-    const { price, category } = menuData[item];
-    const qty = cart[item];
-    const itemTotal = price * qty;
-    total += itemTotal;
-
-    el.innerHTML += `
+    html += `
       <div class="cart-item">
-        <div>
-          <strong>${item}</strong><br>
-          <small>${category} • ₹${price}</small>
+        <div class="item-info">
+          <span class="item-name">${itemName}</span>
+          <span class="item-meta">${portion} • ₹${price}</span>
         </div>
         <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('${item}')">−</button>
+          <button class="qty-btn" onclick="decrease('${itemName}', '${portion}')">−</button>
           <span class="qty-number">${qty}</span>
-          <button class="qty-btn" onclick="increase('${item}')">+</button>
+          <button class="qty-btn" onclick="increase('${itemName}', '${portion}')">+</button>
         </div>
-        <strong>₹${itemTotal}</strong>
-      </div>
-    `;
+        <div class="item-price">₹${price * qty}</div>
+      </div>`;
   });
 
-  el.innerHTML += `<h3>Total: ₹${total}</h3>`;
+  el.innerHTML = html + `<div class="cart-total-footer">Grand Total: ₹${calculateTotal()}</div>`;
 }
-
-function orderText() {
-  let text = "";
-  let total = 0;
-
-  Object.keys(cart).forEach(item => {
-    const { price } = menuData[item];
-    const qty = cart[item];
-    const t = price * qty;
-    total += t;
-    text += `${item} x ${qty} = ₹${t}\n`;
-  });
-
-  return text + `\nTotal: ₹${total}`;
-}
-
-function clearCart() {
-  cart = {};
-  saveCart();
-}
-
-
-
-  const cartBtn = document.getElementById("floatingCart");
-
-  if (cartBtn) {
-    if (total === 0) {
-      cartBtn.classList.add("floating-cart-hidden");
-    } else {
-      cartBtn.classList.remove("floating-cart-hidden");
-    }
-  }
-}
-
 
 function sendWhatsApp() {
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
+  const address = document.getElementById("address")?.value || "Not provided";
 
   if (!name || !phone || Object.keys(cart).length === 0) {
-    alert("Fill details & add items");
+    alert("Please enter details and add items to your order.");
     return;
   }
 
-  const msg =
-`New Order – The Rajputana Darbar
-Name: ${name}
-Phone: ${phone}
+  let orderDetails = "";
+  Object.keys(cart).forEach(key => {
+    orderDetails += `• ${key} x ${cart[key]}\n`;
+  });
 
-${orderText()}`;
-
+  const msg = `*New Order - The Rajputana Darbar*\n\n*Customer:* ${name}\n*Phone:* ${phone}\n*Address:* ${address}\n\n*Items:*\n${orderDetails}\n*Total Amount: ₹${calculateTotal()}*`;
+  
   window.open(`https://wa.me/917795566237?text=${encodeURIComponent(msg)}`);
-  clearCart();
-}
-
-function sendEmail() {
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-
-  if (!name || !phone || Object.keys(cart).length === 0) {
-    alert("Fill details & add items");
-    return;
-  }
-
-  const subject = "New Order | The Rajputana Darbar";
-  const body =
-`Name: ${name}
-Phone: ${phone}
-
-${orderText()}`;
-
-  window.location.href =
-    `mailto:YOUR_EMAIL@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  clearCart();
+  localStorage.removeItem("cart");
+  window.location.href = "index.html";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  updateMenuQty();            // sync menu quantities
-  renderCart();               // render cart if on cart page
-  updateFloatingCartTotal();  // update floating ₹ total
-  updateCartTotalUI();
+  updateUI();
+  updateMenuQtyDisplay();
+  if (document.getElementById("cartItems")) renderCart();
 });
-
-// Redirect to Home page on browser refresh
-if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
-  if (!window.location.pathname.endsWith("index.html")) {
-    window.location.href = "index.html";
-  }
-}
-
