@@ -1,13 +1,18 @@
+/* General Styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   background: #fafafa;
+  position: relative; /* Essential for watermark positioning */
+  min-height: 100vh;
 }
 
 nav {
   background: #8b0000;
   padding: 10px;
   text-align: center;
+  position: relative;
+  z-index: 10; /* Keeps nav above the watermark */
 }
 
 nav a {
@@ -25,6 +30,7 @@ h2, h3 {
   color: #8b0000;
 }
 
+/* Item and Cart Styles */
 .item, .cart-item {
   display: flex;
   justify-content: space-between;
@@ -61,7 +67,7 @@ h2, h3 {
   padding: 10px 0;
 }
 
-/* Menu QR Center */
+/* UI Elements */
 .qr-section {
   text-align: center;
   margin: 40px 0;
@@ -75,7 +81,6 @@ h2, h3 {
   border-radius: 10px;
 }
 
-/* Floating Cart Top Right */
 .floating-cart-top {
   position: fixed;
   top: 3px;
@@ -90,21 +95,8 @@ h2, h3 {
   z-index: 9999;
 }
 
-/* Hidden state */
 .floating-cart-hidden {
   display: none;
-}
-
-/* Keep navbar from hiding it */
-.navbar {
-  padding-right: 90px;
-}
-.cart-total {
-  background: #fff;
-  color: #8b0000;
-  padding: 4px 8px;
-  border-radius: 20px;
-  font-size: 14px;
 }
 
 button.order {
@@ -138,25 +130,27 @@ footer {
   background: #eee;
 }
 
-/* Watermark on all pages */
+/* Watermark Logic: Placed below the Nav Bar */
 body::before {
   content: "";
-  position: fixed;       /* Stays fixed while scrolling */
-  top: 0;
+  position: absolute;       /* Fixed to document flow, not screen */
+  top: 50px;                /* Adjusted to start exactly below your nav */
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 50px);
   background-image: url("watermark.png");
   background-repeat: no-repeat;
-  background-position: center;  /* Center of the page */
-  background-size: 500px;      /* Adjust as needed */
-  opacity: 0.01;                /* Make it subtle */
-  z-index: -1;                  /* Behind all content */
+  background-position: center 50px;
+  background-size: 500px;
+  opacity: 0.03;            /* Subtle appearance */
+  z-index: -1;              /* Behind content */
+  pointer-events: none;     /* Allows clicking through to buttons */
 }
 
 @media (max-width: 768px) {
   body::before {
-    background-size: 200px;   /* smaller for phones */
-    opacity: 0.04;
+    top: 100px;             /* Account for wrapped nav links on mobile */
+    background-size: 250px;
+    opacity: 0.05;
   }
 }
