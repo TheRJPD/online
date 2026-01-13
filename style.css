@@ -129,14 +129,14 @@ input {
 .nav-container {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
   gap: 20px;
   flex-wrap: wrap;
 }
 
 .nav-logo {
   height: 40px; /* Adjust height to fit your nav bar */
-  vertical-align: middle;
+  vertical-align: left;
 }
 
 /* Nav(menu bar) padding */
