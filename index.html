@@ -1,44 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>The Rajputana Darbar</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | The Rajputana Darbar</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
   
 <body>
-<a href="order.html" class="floating-cart-top" id="floatingCart">
-  🛒 <span id="cartTotal">₹0</span>
-</a>
 
-<nav>
-  <a href="index.html"><img src="logo.png" alt="Logo" class="nav-logo"></a>
-  <a href="index.html">Home</a>
-  <a href="menu.html">Menu</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
-  <a href="order.html">Order Cart</a>
-</nav>
+  <a href="order.html" class="floating-cart-top" id="floatingCart">
+    🛒 <span id="cartTotal">₹0</span>
+  </a>
 
-<main class="content-wrapper">
-  <section>
-    <h2>Welcome to The Rajputana Darbar</h2>
-    <p>Authentic Indian Royal Cuisine</p>
-  </section>
-    
-  <section class="qr-section">
-    <h2>Scan Menu</h2>
-    <p>Scan the QR code to view our menu & place your order</p>
+  <nav>
+    <div class="nav-container">
+      <a href="index.html">
+        <img src="logo.png" alt="The Rajputana Darbar Logo" class="nav-logo">
+      </a>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html">Order Cart</a>
+    </div>
+  </nav>
 
-    <img
-      src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://therjpd.github.io/online/menu.html"
-      alt="Menu QR Code"
-      class="menu-qr"
-    />
-  </section>
+  <main class="content-wrapper">
+    <section style="text-align: center; margin-top: 40px;">
+      <h2>Welcome to The Rajputana Darbar</h2>
+      <p>Authentic Indian Royal Cuisine</p>
+    </section>
+      
+    <section class="qr-section">
+      <h2>Scan Menu</h2>
+      <p>Scan the QR code to view our menu & place your order</p>
 
-  <footer>© 2026 The Rajputana Darbar</footer>
-</main>
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://therjpd.github.io/online/menu.html"
+        alt="Menu QR Code"
+        class="menu-qr"
+      />
+    </section>
+  </main>
+
+  <footer>
+    © 2026 The Rajputana Darbar. All Rights Reserved.
+  </footer>
 
 </body>
 </html>
