@@ -128,8 +128,8 @@ input {
 /* Navigation Logo Styling */
 .nav-container {
   display: flex;
-  align-items: left;
-  justify-content: center;
+  align-items: center;
+  justify-content: left;
   gap: 20px;
   flex-wrap: wrap;
 }
