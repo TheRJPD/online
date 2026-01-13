@@ -33,19 +33,6 @@ function updateFloatingCartTotal() {
   const navTotalEl = document.getElementById("navCartTotal");
   if (navTotalEl) navTotalEl.innerText = `₹${total}`;
 }
-<!--Commented
-function increase(item) {
-  cart[item] = (cart[item] || 0) + 1;
-  saveCart();
-}
-
-function decrease(item) {
-  if (!cart[item]) return;
-  cart[item]--;
-  if (cart[item] <= 0) delete cart[item];
-  saveCart();
-}
--->
 
 function increase(item, portion) {
   const cartKey = `${item} (${portion})`; // Example: "Paneer Tikka (Half)"
