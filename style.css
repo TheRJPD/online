@@ -1,184 +1,150 @@
-/* --- Global Reset & Layout --- */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #fafafa;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  /* Prevents horizontal scrolling on mobile */
-  overflow-x: hidden; 
+:root {
+  --royal-maroon: #800000;
+  --royal-gold: #d4af37;
+  --deep-black: #1a1a1a;
+  --soft-white: #fdfdfd;
 }
 
-/* --- Responsive Navigation --- */
+body {
+  font-family: 'Garamond', serif;
+  background-color: #f4f1ea;
+  margin: 0;
+  color: var(--deep-black);
+}
+
+/* Navbar */
 nav {
-  background: #8b0000;
-  padding: 10px;
-  position: fixed;
+  background: var(--deep-black);
+  border-bottom: 4px solid var(--royal-gold);
+  padding: 10px 0;
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
   z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .nav-container {
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  gap: 15px;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: auto;
 }
 
-.nav-logo {
-  height: 30px;
-  width: auto;
-}
-
-nav a {
-  color: #fff;
+.nav-container a {
+  color: var(--royal-gold);
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px; /* Default size */
-  white-space: nowrap; /* Prevents text from breaking into two lines */
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* --- Main Content Wrapper --- */
-.content-wrapper {
-  flex: 1;
-  margin-top: 60px; /* Space for Nav */
-  margin-bottom: 50px; /* Space for Footer */
-  position: relative;
-  z-index: 1;
-  padding: 15px;
+/* Floating Cart */
+.floating-cart-middle {
+  background: var(--royal-gold);
+  color: var(--deep-black) !important;
+  padding: 8px 15px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s;
 }
 
-/* --- Watermark (Responsive) --- */
-.content-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("watermark.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: 400px; /* Desktop size */
-  opacity: 0.04;
-  z-index: -1;
-  pointer-events: none;
+.floating-cart-middle.hidden { display: none; }
+.floating-cart-middle:hover { transform: scale(1.05); }
+
+/* Menu Items */
+.item-container, .item-card {
+  background: white;
+  margin: 15px 0;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 6px solid var(--royal-maroon);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
 }
 
-/* --- UI Elements --- */
 .item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #fff;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item:last-child { border-bottom: none; }
+
+/* Quantity Buttons */
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 25px;
 }
 
 .qty-btn {
-  width: 35px;
-  height: 35px;
-  background: #8b0000;
-  color: #fff;
+  background: var(--royal-maroon);
+  color: white;
   border: none;
-  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
 }
 
-/* Navigation Cart Link */
-.nav-cart-link {
-  color: #ffcc00 !important; /* Distinct color for the cart in nav */
+.qty-number {
   font-weight: bold;
-}
-
-/* Floating Cart - Right Middle Position */
-/* Navigation Cart Link Styling */
-.nav-cart-link {
-  color: #ffcc00 !important; /* Standout color for nav cart */
-  font-weight: bold;
-}
-
-/* Floating Cart - Right Middle Position */
-.floating-cart-top {
-  position: relative;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%); /* Centers exactly in the middle vertically */
-  background: #8b0000;
-  color: #ffffff;
-  padding: 12px 16px;
-  border-radius: 30px 0 0 30px; /* Rounded tab on the left side */
-  font-weight: bold;
-  text-decoration: none;
-  box-shadow: -2px 4px 10px rgba(0,0,0,0.3);
-  z-index: 10001; /* Above nav and content */
-  display: inline-flex;
-  align-items: center;
-  transition: all 0.3s ease;
-}
-
-/* Hidden state if cart is empty */
-.floating-cart-hidden {
-  display: none !important;
-}
-
-/* Mobile Adjustments */
-@media (max-width: 600px) {
-  .floating-cart-top {
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-}
-  
-  .nav-cart-link {
-    display: none; /* Hide nav cart on mobile to save space, keep floating cart */
-  }
-}
-/* --- Fixed Footer --- */
-footer {
+  min-width: 20px;
   text-align: center;
-  padding: 15px;
-  background: #eee;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 12px;
-  z-index: 1000;
 }
 
-/* --- MOBILE SPECIFIC STYLES (The "Same Look" Fix) --- */
-@media (max-width: 600px) {
-  .nav-container {
-    gap: 8px; /* Tighter gap on phones */
-  }
+/* Cart/Checkout Page */
+.cart-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
 
-  nav a {
-    font-size: 11px; /* Smaller font so links fit in one row */
-  }
+.item-name { font-weight: bold; display: block; }
+.item-meta { font-size: 0.85em; color: #666; }
+.item-price { text-align: right; font-weight: bold; color: var(--royal-maroon); }
 
-  .nav-logo {
-    height: 25px; /* Smaller logo for mobile */
-  }
+.cart-total-footer {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--royal-maroon);
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 2px solid var(--royal-gold);
+}
 
-  .content-wrapper {
-    margin-top: 50px; /* Adjust for smaller nav */
-    padding: 10px;
-  }
+/* Forms */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
 
-  .content-wrapper::before {
-    background-size: 280px; /* Smaller watermark for mobile screens */
-    background-position: center 100px;
-  }
-
-  .item {
-    font-size: 14px; /* Easier to read on small screens */
-  }
+.btn-order {
+  background: #25D366; /* WhatsApp Green */
+  color: white;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
 }
