@@ -1,12 +1,12 @@
 const menuData = {
-  "Paneer Tikka": {portions: { "Half": 150, "Full": 300 }, category: "Starter Veg"},
-  "Veg Spring Roll": { price: 200, category: "Starter Veg" },
-  "Chicken Tikka": { price: 350, category: "Starter Non-Veg" },
-  "Fish Amritsari": { price: 400, category: "Starter Non-Veg" },
-  "Dal Makhani": { price: 250, category: "Main Course Veg" },
-  "Paneer Butter Masala": { price: 300, category: "Main Course Veg" },
-  "Butter Chicken": { price: 350, category: "Main Course Non-Veg" },
-  "Mutton Rogan Josh": { price: 450, category: "Main Course Non-Veg" }
+  "Paneer Tikka": { category: "Starter Veg", portions: { "Half": 150, "Full": 300 } },
+  "Veg Spring Roll": { category: "Starter Veg", portions: { "Full": 200 } },
+  "Chicken Tikka": { category: "Starter Non-Veg", portions: { "Half": 200, "Full": 350 } },
+  "Fish Amritsari": { category: "Starter Non-Veg", portions: { "Full": 400 } },
+  "Dal Makhani": { category: "Main Course Veg", portions: { "Half": 150, "Full": 250 } },
+  "Paneer Butter Masala": { category: "Main Course Veg", portions: { "Half": 180, "Full": 300 } },
+  "Butter Chicken": { category: "Main Course Non-Veg", portions: { "Half": 220, "Full": 350 } },
+  "Mutton Rogan Josh": { category: "Main Course Non-Veg", portions: { "Half": 280, "Full": 450, "KG": 1600 } }
 };
 
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
@@ -34,27 +34,53 @@ function updateFloatingCartTotal() {
   if (navTotalEl) navTotalEl.innerText = `₹${total}`;
 }
 
+//
+const cartBtn = document.getElementById("floatingCart");
+if (cartBtn) {
+    total === 0 ? cartBtn.classList.add("floating-cart-hidden") : cartBtn.classList.remove("floating-cart-hidden");
+  }
+}
+
+// Accepts 'portion' (Half/Full/KG)
 function increase(item, portion) {
-  const cartKey = `${item} (${portion})`; // Example: "Paneer Tikka (Half)"
-  cart[cartKey] = (cart[cartKey] || 0) + 1;
+  const key = `${item} (${portion})`;
+  cart[key] = (cart[key] || 0) + 1;
   saveCart();
 }
 
 function decrease(item, portion) {
-  const cartKey = `${item} (${portion})`;
-  if (!cart[cartKey]) return;
-  cart[cartKey]--;
-  if (cart[cartKey] <= 0) delete cart[cartKey];
+  const key = `${item} (${portion})`;
+  if (!cart[key]) return;
+  cart[key]--;
+  if (cart[key] <= 0) delete cart[key];
   saveCart();
 }
 
 function updateMenuQty() {
   Object.keys(menuData).forEach(item => {
-    const el = document.getElementById(`qty-${item}`);
-    if (el) el.innerText = cart[item] || 0;
+    Object.keys(menuData[item].portions).forEach(portion => {
+      const el = document.getElementById(`qty-${item}-${portion}`);
+      if (el) {
+        const key = `${item} (${portion})`;
+        el.innerText = cart[key] || 0;
+      }
+    });
   });
 }
 
+function updateCartTotalUI() {
+  let total = 0;
+  Object.keys(cart).forEach(key => {
+    // Extracts item name and portion from "Item (Portion)"
+    const match = key.match(/(.*) \((.*)\)/);
+    if (match) {
+      const itemName = match[1];
+      const portion = match[2];
+      const price = menuData[itemName].portions[portion];
+      total += price * cart[key];
+    }
+  });
+  
 function renderCart() {
   const el = document.getElementById("cartItems");
   if (!el) return;
@@ -112,11 +138,7 @@ function clearCart() {
   saveCart();
 }
 
-function updateCartTotalUI() {
-  let total = 0;
-  Object.keys(cart).forEach(item => {
-    total += menuData[item].price * cart[item];
-  });
+
 
   const cartBtn = document.getElementById("floatingCart");
 
