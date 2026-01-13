@@ -25,8 +25,13 @@ function updateFloatingCartTotal() {
     total += menuData[item].price * cart[item];
   });
 
-  const el = document.getElementById("cartTotal");
-  if (el) el.innerText = `₹${total}`;
+  // Update Floating Cart
+  const floatingEl = document.getElementById("cartTotal");
+  if (floatingEl) floatingEl.innerText = `₹${total}`;
+
+  // Update Nav Cart (New ID)
+  const navEl = document.getElementById("navCartTotal");
+  if (navEl) navEl.innerText = `₹${total}`;
 }
 
 function increase(item) {
