@@ -136,7 +136,7 @@ input {
 
 .nav-logo {
   height: 40px; /* Adjust height to fit your nav bar */
-  vertical-align: center;
+  vertical-align: middle;
 }
 
 /* Nav(menu bar) padding */
