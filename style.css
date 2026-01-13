@@ -107,8 +107,8 @@ nav a {
 }
 
 /* Floating Cart - Right Middle Position */
-.floating-cart-middle {
-  position: fixed;
+.floating-cart-top {
+  position: relative;
   right: 0;
   top: 50%;
   transform: translateY(-50%); /* Centers exactly in the middle vertically */
@@ -120,7 +120,7 @@ nav a {
   text-decoration: none;
   box-shadow: -2px 4px 10px rgba(0,0,0,0.3);
   z-index: 10001; /* Above nav and content */
-  display: flex;
+  display: inline-flex;
   align-items: center;
   transition: all 0.3s ease;
 }
@@ -132,7 +132,7 @@ nav a {
 
 /* Mobile Adjustments */
 @media (max-width: 600px) {
-  .floating-cart-middle {
+  .floating-cart-top {
     padding: 8px 12px;
     font-size: 13px;
   }
