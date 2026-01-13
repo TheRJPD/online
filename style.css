@@ -142,7 +142,7 @@ body::before {
   background-repeat: no-repeat;
   background-position: center 50px;
   background-size: 500px;
-  opacity: 0.03;            /* Subtle appearance */
+  opacity: 0.08;            /* Subtle appearance */
   z-index: -1;              /* Behind content */
   pointer-events: none;     /* Allows clicking through to buttons */
 }
