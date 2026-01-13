@@ -9,10 +9,11 @@ body {
   font-family: 'Garamond', serif;
   background-color: #f4f1ea;
   margin: 0;
+  padding: 0;
   color: var(--deep-black);
 }
 
-/* Navbar */
+/* --- Navbar --- */
 nav {
   background: var(--deep-black);
   border-bottom: 4px solid var(--royal-gold);
@@ -28,6 +29,7 @@ nav {
   align-items: center;
   max-width: 1000px;
   margin: auto;
+  padding: 0 15px;
 }
 
 .nav-container a {
@@ -38,23 +40,42 @@ nav {
   letter-spacing: 1px;
 }
 
-/* Floating Cart */
+.nav-logo {
+  height: 40px;
+  width: auto;
+}
+
+/* --- Floating Cart Fix --- */
 .floating-cart-middle {
   background: var(--royal-gold);
   color: var(--deep-black) !important;
-  padding: 8px 15px;
+  padding: 8px 18px;
   border-radius: 50px;
-  display: flex;
+  display: flex; /* Base display state */
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  transition: transform 0.2s, opacity 0.3s;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.floating-cart-middle.hidden { display: none; }
-.floating-cart-middle:hover { transform: scale(1.05); }
+/* This specifically fixes the "invisible" issue */
+.floating-cart-middle.hidden { 
+  display: none !important; 
+}
 
-/* Menu Items */
+.floating-cart-middle:hover { 
+  transform: scale(1.05); 
+}
+
+/* --- Menu Page Items --- */
+.content-wrapper {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
 .item-container, .item-card {
   background: white;
   margin: 15px 0;
@@ -72,37 +93,49 @@ nav {
   border-bottom: 1px solid #eee;
 }
 
-.item:last-child { border-bottom: none; }
+.item:last-child { 
+  border-bottom: none; 
+}
 
-/* Quantity Buttons */
+/* --- Quantity Buttons --- */
 .qty-control {
   display: flex;
   align-items: center;
   gap: 12px;
   background: #f9f9f9;
-  padding: 5px 10px;
+  padding: 5px 12px;
   border-radius: 25px;
+  border: 1px solid #ddd;
 }
 
 .qty-btn {
   background: var(--royal-maroon);
   color: white;
   border: none;
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover {
+  background: #a00000;
 }
 
 .qty-number {
   font-weight: bold;
   min-width: 20px;
   text-align: center;
+  font-size: 1.1rem;
 }
 
-/* Cart/Checkout Page */
+/* --- Cart/Checkout Page --- */
 .cart-item {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
@@ -111,11 +144,25 @@ nav {
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
-.item-name { font-weight: bold; display: block; }
-.item-meta { font-size: 0.85em; color: #666; }
-.item-price { text-align: right; font-weight: bold; color: var(--royal-maroon); }
+.item-name { 
+  font-weight: bold; 
+  display: block; 
+  color: var(--royal-maroon);
+}
+
+.item-meta { 
+  font-size: 0.85em; 
+  color: #666; 
+}
+
+.item-price { 
+  text-align: right; 
+  font-weight: bold; 
+  color: var(--royal-maroon); 
+}
 
 .cart-total-footer {
   text-align: right;
@@ -127,7 +174,14 @@ nav {
   border-top: 2px solid var(--royal-gold);
 }
 
-/* Forms */
+.empty-msg {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-style: italic;
+}
+
+/* --- Forms --- */
 input, textarea {
   width: 100%;
   padding: 12px;
@@ -135,6 +189,7 @@ input, textarea {
   border: 1px solid #ccc;
   border-radius: 8px;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 .btn-order {
@@ -147,4 +202,18 @@ input, textarea {
   font-size: 1.1rem;
   font-weight: bold;
   cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s;
+}
+
+.btn-order:hover {
+  background: #1ebe57;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--deep-black);
+  color: var(--royal-gold);
+  margin-top: 50px;
 }
