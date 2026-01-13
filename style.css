@@ -93,6 +93,28 @@ nav a {
   cursor: pointer;
 }
 
+/* Update this section in style.css */
+.floating-cart-top {
+  position: fixed;
+  top: 15px;            /* Increased from 3px to avoid overlapping nav text */
+  right: 15px;
+  background: #ffffff;
+  color: #8b0000;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 10001;       /* Ensure it is higher than the nav (z-index: 1000) */
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.floating-cart-top:hover {
+  transform: scale(1.05);
+}
+
 /* --- Fixed Footer --- */
 footer {
   text-align: center;
