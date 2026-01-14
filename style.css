@@ -263,6 +263,45 @@ input, textarea {
   }
 }
 
+/* QR section starts */
+
+.qr-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.qr-container {
+  display: flex;
+  justify-content: center; /* Centers the QRs */
+  gap: 30px;               /* Space between the two QRs */
+  flex-wrap: wrap;         /* Allows them to stack on mobile */
+  margin-top: 20px;
+}
+
+.qr-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.qr-code-img {
+  width: 180px;            /* Standard scan size */
+  height: 180px;
+  border: 5px solid #fff;  /* Creates a frame */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  background-color: white; /* Ensures readability */
+}
+
+.qr-item span {
+  font-weight: bold;
+  color: var(--royal-gold); /* Using your existing gold color */
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+/* QR section end */
+
 footer {
   text-align: center;
   padding: 30px;
