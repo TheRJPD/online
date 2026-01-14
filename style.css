@@ -40,6 +40,12 @@ nav {
   letter-spacing: 1px;
 }
 
+.nav-container a.active {
+  color: #fff; /* White text for contrast */
+  border-bottom: 2px solid var(--royal-gold);
+  padding-bottom: 2px;
+}
+
 .nav-logo {
   height: 40px;
   width: auto;
