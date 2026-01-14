@@ -1,12 +1,25 @@
 const menuData = {
-  "Paneer Tikka": { category: "Starter Veg", portions: { "Half": 150, "Full": 300 } },
-  "Veg Spring Roll": { category: "Starter Veg", portions: { "Full": 200 } },
-  "Chicken Tikka": { category: "Starter Non-Veg", portions: { "Half": 200, "Full": 350 } },
-  "Fish Amritsari": { category: "Starter Non-Veg", portions: { "Full": 400 } },
-  "Dal Makhani": { category: "Main Course Veg", portions: { "Half": 150, "Full": 250 } },
-  "Paneer Butter Masala": { category: "Main Course Veg", portions: { "Half": 180, "Full": 300 } },
-  "Butter Chicken": { category: "Main Course Non-Veg", portions: { "Half": 220, "Full": 350 } },
-  "Mutton Rogan Josh": { category: "Main Course Non-Veg", portions: { "Half": 280, "Full": 450, "KG": 1600 } }
+  // Starters
+  "Litti Chokha Dal Ghee": { portions: { "Full": 100 } },
+  "Litti Chicken": { portions: { "Full": 150 } },
+  "Chicken Kabab Paratha": { portions: { "Set": 50 } },
+  "Paneer Paratha": { portions: { "Full": 80 } },
+  "Aloo Paratha": { portions: { "Full": 60 } },
+  "Dal Paratha": { portions: { "Full": 60 } },
+  "Pyaz Paratha": { portions: { "Full": 60 } },
+  "Maggie/Wai-Wai": { portions: { "Full": 50 } },
+  "Kulhad Chai": { portions: { "Cup": 15 } },
+  "Bun Makkhan": { portions: { "Full": 50 } },
+
+  // Main Course
+  "Paneer": { portions: { "Half": 140, "Full": 280, "KG": 800 } },
+  "Mutton Handi": { portions: { "Half": 200, "Full": 400, "KG": 1500 } },
+  "Chicken Handi": { portions: { "Half": 120, "Full": 240, "KG": 900 } },
+  "Chicken Thali": { portions: { "Full": 200 } },
+  "Mutton Thali": { portions: { "Full": 280 } },
+  "Veg Thali": { portions: { "Full": 120 } },
+  "Rice": { portions: { "Half": 45, "Full": 90 } },
+  "Roti": { portions: { "Plain": 10, "Ghee": 15 } }
 };
 
 let cart = JSON.parse(localStorage.getItem("cart")) || {};
