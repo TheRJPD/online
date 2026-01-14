@@ -154,8 +154,33 @@ function sendWhatsApp() {
   window.location.href = "index.html";
 }
 
+/*
 document.addEventListener("DOMContentLoaded", () => {
   updateUI();
   updateMenuQtyDisplay();
   if (document.getElementById("cartItems")) renderCart();
+});
+*/
+
+document.addEventListener("DOMContentLoaded", () => {
+  // ... your existing initialization (updateUI, etc.)
+  updateUI();
+  updateMenuQtyDisplay();
+  if (document.getElementById("cartItems")) renderCart();
+  
+  // Automatic Navigation Highlighting logic
+  const currentPath = window.location.pathname.split("/").pop() || "index.html";
+  const navLinks = document.querySelectorAll(".nav-container a");
+
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute("href");
+    
+    // Remove existing active classes first
+    link.classList.remove("active");
+
+    // Compare link href with current filename
+    if (linkPath === currentPath) {
+      link.classList.add("active");
+    }
+  });
 });
