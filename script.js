@@ -154,14 +154,14 @@ function sendWhatsApp() {
   window.location.href = "index.html";
 }
 
-
+/*
 document.addEventListener("DOMContentLoaded", () => {
   updateUI();
   updateMenuQtyDisplay();
   if (document.getElementById("cartItems")) renderCart();
 });
 
-/*
+
 document.addEventListener("DOMContentLoaded", () => {
   // ... your existing initialization (updateUI, etc.)
   updateUI();
