@@ -7,116 +7,274 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-
 <body>
 
   <nav>
-  <div class="nav-container">
-    <a href="index.html"><img src="logo.png" alt="Logo" class="nav-logo"></a>
-    <a href="index.html">Home</a>
-    <a href="menu.html">Menu</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-    <a href="order.html">Cart</a>
-    <a href="order.html" class="floating-cart-middle hidden" id="floatingCart">
-      🛒 <span id="cartTotal">₹0</span>
-    </a>
-  </div>
-</nav>
+    <div class="nav-container">
+      <a href="index.html"><img src="logo.png" alt="Logo" class="nav-logo"></a>
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="order.html" class="floating-cart-middle hidden" id="floatingCart">
+        🛒 <span id="cartTotal">₹0</span>
+      </a>
+    </div>
+  </nav>
 
   <main class="content-wrapper">
     <section>
       <div style="text-align: center; margin-bottom: 20px;">
-        <h2>Our Royal Menu</h2>
-        <p>Select your favorite dishes to add to your order.</p>
+        <h2 style="color: var(--royal-maroon);">The Rajputana Darbar Rate List</h2>
+        <p>Authentic Royal Flavors Delivered to Your Doorstep</p>
       </div>
 
-      <h3>Starter - Veg</h3>
-   <!--   <div class="item"> -->
-        <div class="item-container">
-          <strong>Paneer Tikka</strong>
-          
-          <div class="item">
-            <span>Half - ₹150</span>
-            <div class="qty-control">
-              <button class="qty-btn" onclick="decrease('Paneer Tikka', 'Half')">−</button>
-              <span class="qty-number" id="qty-Paneer Tikka-Half">0</span>
-              <button class="qty-btn" onclick="increase('Paneer Tikka', 'Half')">+</button>
-            </div>
-          </div>
-        
-          <div class="item">
-            <span>Full - ₹300</span>
-            <div class="qty-control">
-              <button class="qty-btn" onclick="decrease('Paneer Tikka', 'Full')">−</button>
-              <span class="qty-number" id="qty-Paneer Tikka-Full">0</span>
-              <button class="qty-btn" onclick="increase('Paneer Tikka', 'Full')">+</button>
-            </div>
-          </div>
-        </div>
-
-      <div class="item">
-        Veg Spring Roll <span>₹200</span>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('Veg Spring Roll')">−</button>
-          <span class="qty-number" id="qty-Veg Spring Roll">0</span>
-          <button class="qty-btn" onclick="increase('Veg Spring Roll')">+</button>
-        </div>
-      </div>
-
-      <h3>Starter - Non Veg</h3>
-      <div class="item">
-        Chicken Tikka <span>₹350</span>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('Chicken Tikka')">−</button>
-          <span class="qty-number" id="qty-Chicken Tikka">0</span>
-          <button class="qty-btn" onclick="increase('Chicken Tikka')">+</button>
-        </div>
-      </div>
-
-      <h3>Main Course - Veg</h3>
-      <div class="item">
-        Dal Makhani <span>₹250</span>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('Dal Makhani')">−</button>
-          <span class="qty-number" id="qty-Dal Makhani">0</span>
-          <button class="qty-btn" onclick="increase('Dal Makhani')">+</button>
-        </div>
-      </div>
+      <h3 class="menu-category-title">स्टार्टर (Starters)</h3>
       
-      <h3>Main Course - Non-Veg</h3>
       <div class="item-card">
-      <strong>Mutton Rogan Josh</strong>
-      
-      <div class="item">
-        <span>Half - ₹280</span>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('Mutton Rogan Josh', 'Half')">−</button>
-          <span class="qty-number" id="qty-Mutton Rogan Josh-Half">0</span>
-          <button class="qty-btn" onclick="increase('Mutton Rogan Josh', 'Half')">+</button>
+        <div class="item">
+          <span>Litti Chokha Dal Ghee (लिट्टी चोखा दाल घी)</span>
+          <div class="qty-control">
+            <span>₹100</span>
+            <button class="qty-btn" onclick="decrease('Litti Chokha Dal Ghee', 'Full')">−</button>
+            <span class="qty-number" id="qty-Litti Chokha Dal Ghee-Full">0</span>
+            <button class="qty-btn" onclick="increase('Litti Chokha Dal Ghee', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Litti Chicken (लिट्टी चिकन)</span>
+          <div class="qty-control">
+            <span>₹150</span>
+            <button class="qty-btn" onclick="decrease('Litti Chicken', 'Full')">−</button>
+            <span class="qty-number" id="qty-Litti Chicken-Full">0</span>
+            <button class="qty-btn" onclick="increase('Litti Chicken', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Chicken Kabab Paratha (1 Kabab, 1 Paratha)</span>
+          <div class="qty-control">
+            <span>₹50</span>
+            <button class="qty-btn" onclick="decrease('Chicken Kabab Paratha', 'Set')">−</button>
+            <span class="qty-number" id="qty-Chicken Kabab Paratha-Set">0</span>
+            <button class="qty-btn" onclick="increase('Chicken Kabab Paratha', 'Set')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Paneer Paratha (With Curd Raita)</span>
+          <div class="qty-control">
+            <span>₹80</span>
+            <button class="qty-btn" onclick="decrease('Paneer Paratha', 'Full')">−</button>
+            <span class="qty-number" id="qty-Paneer Paratha-Full">0</span>
+            <button class="qty-btn" onclick="increase('Paneer Paratha', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Aloo Paratha (With Curd Raita)</span>
+          <div class="qty-control">
+            <span>₹60</span>
+            <button class="qty-btn" onclick="decrease('Aloo Paratha', 'Full')">−</button>
+            <span class="qty-number" id="qty-Aloo Paratha-Full">0</span>
+            <button class="qty-btn" onclick="increase('Aloo Paratha', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Dal Paratha (With Curd Raita)</span>
+          <div class="qty-control">
+            <span>₹60</span>
+            <button class="qty-btn" onclick="decrease('Dal Paratha', 'Full')">−</button>
+            <span class="qty-number" id="qty-Dal Paratha-Full">0</span>
+            <button class="qty-btn" onclick="increase('Dal Paratha', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Pyaz Paratha (With Curd Raita)</span>
+          <div class="qty-control">
+            <span>₹60</span>
+            <button class="qty-btn" onclick="decrease('Pyaz Paratha', 'Full')">−</button>
+            <span class="qty-number" id="qty-Pyaz Paratha-Full">0</span>
+            <button class="qty-btn" onclick="increase('Pyaz Paratha', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Maggie / Wai-Wai (मैगी/वाई-वाई)</span>
+          <div class="qty-control">
+            <span>₹50</span>
+            <button class="qty-btn" onclick="decrease('Maggie/Wai-Wai', 'Full')">−</button>
+            <span class="qty-number" id="qty-Maggie/Wai-Wai-Full">0</span>
+            <button class="qty-btn" onclick="increase('Maggie/Wai-Wai', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Kulhad Chai (कुलहड़ चाय)</span>
+          <div class="qty-control">
+            <span>₹15</span>
+            <button class="qty-btn" onclick="decrease('Kulhad Chai', 'Cup')">−</button>
+            <span class="qty-number" id="qty-Kulhad Chai-Cup">0</span>
+            <button class="qty-btn" onclick="increase('Kulhad Chai', 'Cup')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Bun Makkhan (बंद मक्खन)</span>
+          <div class="qty-control">
+            <span>₹50</span>
+            <button class="qty-btn" onclick="decrease('Bun Makkhan', 'Full')">−</button>
+            <span class="qty-number" id="qty-Bun Makkhan-Full">0</span>
+            <button class="qty-btn" onclick="increase('Bun Makkhan', 'Full')">+</button>
+          </div>
         </div>
       </div>
-    
-      <div class="item">
-        <span>Full - ₹450</span>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('Mutton Rogan Josh', 'Full')">−</button>
-          <span class="qty-number" id="qty-Mutton Rogan Josh-Full">0</span>
-          <button class="qty-btn" onclick="increase('Mutton Rogan Josh', 'Full')">+</button>
+
+      <h3 class="menu-category-title">मेन कोर्स (Main Course)</h3>
+
+      <div class="item-card">
+        <strong>Paneer (पनीर)</strong>
+        <div class="item">
+          <span>Half (5 Pcs) - ₹140</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Paneer', 'Half')">−</button>
+            <span class="qty-number" id="qty-Paneer-Half">0</span>
+            <button class="qty-btn" onclick="increase('Paneer', 'Half')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Full (10 Pcs) - ₹280</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Paneer', 'Full')">−</button>
+            <span class="qty-number" id="qty-Paneer-Full">0</span>
+            <button class="qty-btn" onclick="increase('Paneer', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>1 KG - ₹800</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Paneer', 'KG')">−</button>
+            <span class="qty-number" id="qty-Paneer-KG">0</span>
+            <button class="qty-btn" onclick="increase('Paneer', 'KG')">+</button>
+          </div>
         </div>
       </div>
-    
-      <div class="item">
-        <span>1 KG - ₹1600</span>
-        <div class="qty-control">
-          <button class="qty-btn" onclick="decrease('Mutton Rogan Josh', 'KG')">−</button>
-          <span class="qty-number" id="qty-Mutton Rogan Josh-KG">0</span>
-          <button class="qty-btn" onclick="increase('Mutton Rogan Josh', 'KG')">+</button>
+
+      <div class="item-card">
+        <strong>Mutton Handi (मटन हांडी)</strong>
+        <div class="item">
+          <span>Half (2 Pcs) - ₹200</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Mutton Handi', 'Half')">−</button>
+            <span class="qty-number" id="qty-Mutton Handi-Half">0</span>
+            <button class="qty-btn" onclick="increase('Mutton Handi', 'Half')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Full (4 Pcs) - ₹400</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Mutton Handi', 'Full')">−</button>
+            <span class="qty-number" id="qty-Mutton Handi-Full">0</span>
+            <button class="qty-btn" onclick="increase('Mutton Handi', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>1 KG - ₹1500</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Mutton Handi', 'KG')">−</button>
+            <span class="qty-number" id="qty-Mutton Handi-KG">0</span>
+            <button class="qty-btn" onclick="increase('Mutton Handi', 'KG')">+</button>
+          </div>
         </div>
       </div>
-    </div>
-      
-      <div style="height: 50px;"></div>
+
+      <div class="item-card">
+        <strong>Chicken Handi (चिकन हांडी)</strong>
+        <div class="item">
+          <span>Half (2 Pcs) - ₹120</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Chicken Handi', 'Half')">−</button>
+            <span class="qty-number" id="qty-Chicken Handi-Half">0</span>
+            <button class="qty-btn" onclick="increase('Chicken Handi', 'Half')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Full (4 Pcs) - ₹240</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Chicken Handi', 'Full')">−</button>
+            <span class="qty-number" id="qty-Chicken Handi-Full">0</span>
+            <button class="qty-btn" onclick="increase('Chicken Handi', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>1 KG - ₹900</span>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="decrease('Chicken Handi', 'KG')">−</button>
+            <span class="qty-number" id="qty-Chicken Handi-KG">0</span>
+            <button class="qty-btn" onclick="increase('Chicken Handi', 'KG')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <strong>Special Thalis (थाली)</strong>
+        <div class="item">
+          <span>Chicken Thali (4 Roti, Rice, 3 Pcs Chicken)</span>
+          <div class="qty-control">
+            <span>₹200</span>
+            <button class="qty-btn" onclick="decrease('Chicken Thali', 'Full')">−</button>
+            <span class="qty-number" id="qty-Chicken Thali-Full">0</span>
+            <button class="qty-btn" onclick="increase('Chicken Thali', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Mutton Thali (4 Roti, Rice, 2 Pcs Mutton)</span>
+          <div class="qty-control">
+            <span>₹280</span>
+            <button class="qty-btn" onclick="decrease('Mutton Thali', 'Full')">−</button>
+            <span class="qty-number" id="qty-Mutton Thali-Full">0</span>
+            <button class="qty-btn" onclick="increase('Mutton Thali', 'Full')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Veg Thali (4 Roti, Rice, Dal, Sabji)</span>
+          <div class="qty-control">
+            <span>₹120</span>
+            <button class="qty-btn" onclick="decrease('Veg Thali', 'Full')">−</button>
+            <span class="qty-number" id="qty-Veg Thali-Full">0</span>
+            <button class="qty-btn" onclick="increase('Veg Thali', 'Full')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="item-card">
+        <strong>Breads & Sides</strong>
+        <div class="item">
+          <span>Chawal (Rice) - Half</span>
+          <div class="qty-control">
+            <span>₹45</span>
+            <button class="qty-btn" onclick="decrease('Rice', 'Half')">−</button>
+            <span class="qty-number" id="qty-Rice-Half">0</span>
+            <button class="qty-btn" onclick="increase('Rice', 'Half')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Roti (Plain) - per piece</span>
+          <div class="qty-control">
+            <span>₹10</span>
+            <button class="qty-btn" onclick="decrease('Roti', 'Plain')">−</button>
+            <span class="qty-number" id="qty-Roti-Plain">0</span>
+            <button class="qty-btn" onclick="increase('Roti', 'Plain')">+</button>
+          </div>
+        </div>
+        <div class="item">
+          <span>Ghee Roti - per piece</span>
+          <div class="qty-control">
+            <span>₹15</span>
+            <button class="qty-btn" onclick="decrease('Roti', 'Ghee')">−</button>
+            <span class="qty-number" id="qty-Roti-Ghee">0</span>
+            <button class="qty-btn" onclick="increase('Roti', 'Ghee')">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="height: 50px; text-align: center; margin-top: 20px;">
+        <p style="color: var(--royal-maroon); font-weight: bold;">टिफिन सर्विस होम डिलेवरी की सुविधा उपलब्ध है ।</p>
+      </div>
     </section>
   </main>
 
