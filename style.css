@@ -77,7 +77,7 @@ nav {
 }
 */
 .nav-logo {
-  height: 40px;
+  height: 48px;
   width: auto;
 }
 
@@ -252,7 +252,12 @@ input, textarea {
     gap: 10px;
     padding: 5px;
   }
-  
+
+  @media (max-width: 768px) {
+  .nav-logo {
+    height: 36px;
+  }
+}
   .nav-container a {
     font-size: 0.75rem; /* Compact text for very small screens */
   }
