@@ -21,94 +21,82 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 100%;
 }
 
 .nav-container {
   display: flex;
+  justify-content: space-around;
   align-items: center;
-  max-width: 1200px; /* Increased slightly for better desktop spacing */
+  max-width: 1000px;
   margin: auto;
   padding: 0 15px;
-  flex-wrap: nowrap;
 }
 
-/* Logo Alignment - Pushes everything else to the right */
-.logo-link {
-  margin-right: auto;
-  display: flex;
-  align-items: center;
+.nav-container a {
+  color: var(--royal-gold);
   text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* Ensures the logo never gets the highlight box */
-.logo-link.active, .logo-link:hover {
-  background-color: transparent !important;
-  box-shadow: none !important;
+.nav-container a.active {
+  color: #fff; // White text for contrast
+  border-bottom: 2px solid var(--royal-gold);
+  padding-bottom: 2px;
 }
 
-.nav-logo {
-  height: 45px;
-  width: auto;
-  flex-shrink: 0;
+.nav-container a:hover {
+  color: #fff;
+  border-bottom: 2px solid var(--royal-gold);
+  transition: 0.3s;
 }
 
-/* Wrapper for Nav Links + Cart to keep them aligned together on the right */
-.nav-links-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Specifically for Home, Menu, About, Contact */
-.nav-links {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
-
-.nav-links a {
+/*
+.nav-container a {
   color: var(--royal-gold);
   text-decoration: none;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 8px 15px;
-  border-radius: 8px;
+  padding: 8px 15px; // Added padding for the box effect
+  border-radius: 8px; // Rounded corners for the box
   transition: all 0.3s ease;
-  font-size: 0.9rem;
-  white-space: nowrap;
+  display: inline-block;
 }
 
-/* Box Highlight for Active Page - Targeted to text links only */
-.nav-links a.active {
-  background-color: var(--royal-gold);
-  color: var(--deep-black) !important;
+.nav-container a.active {
+  background-color: var(--royal-gold); // Gold background //
+  color: var(--deep-black) !important; // Black text for contrast //
   box-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
 }
 
-.nav-links a:hover:not(.active) {
-  background-color: rgba(212, 175, 55, 0.15);
+.nav-container a:not(.active):hover {
+  background-color: rgba(212, 175, 55, 0.1); // Subtle gold tint //
   color: #fff;
 }
+*/
+.nav-logo {
+  height: 40px;
+  width: auto;
+}
 
-/* --- Floating Cart --- */
+/* --- Floating Cart Fix --- */
 .floating-cart-middle {
   background: var(--royal-gold);
   color: var(--deep-black) !important;
   padding: 8px 18px;
   border-radius: 50px;
-  display: flex;
+  display: flex; /* Base display state */
   align-items: center;
   gap: 8px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s;
+  transition: transform 0.2s, opacity 0.3s;
   text-decoration: none;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  margin-left: 10px; /* Space between last nav link and cart */
+  font-size: 1rem;
 }
 
+/* This specifically fixes the "invisible" issue */
 .floating-cart-middle.hidden { 
   display: none !important; 
 }
@@ -117,14 +105,14 @@ nav {
   transform: scale(1.05); 
 }
 
-/* --- Content & Items --- */
+/* --- Menu Page Items --- */
 .content-wrapper {
   max-width: 800px;
   margin: 20px auto;
   padding: 0 20px;
 }
 
-.item-card {
+.item-container, .item-card {
   background: white;
   margin: 15px 0;
   padding: 20px;
@@ -141,9 +129,11 @@ nav {
   border-bottom: 1px solid #eee;
 }
 
-.item:last-child { border-bottom: none; }
+.item:last-child { 
+  border-bottom: none; 
+}
 
-/* --- Quantity Controls --- */
+/* --- Quantity Buttons --- */
 .qty-control {
   display: flex;
   align-items: center;
@@ -163,18 +153,53 @@ nav {
   border-radius: 50%;
   cursor: pointer;
   font-size: 20px;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s;
+}
+
+.qty-btn:hover {
+  background: #a00000;
 }
 
 .qty-number {
   font-weight: bold;
   min-width: 20px;
   text-align: center;
+  font-size: 1.1rem;
 }
 
-/* --- Order & Checkout --- */
+/* --- Cart/Checkout Page --- */
+.cart-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.item-name { 
+  font-weight: bold; 
+  display: block; 
+  color: var(--royal-maroon);
+}
+
+.item-meta { 
+  font-size: 0.85em; 
+  color: #666; 
+}
+
+.item-price { 
+  text-align: right; 
+  font-weight: bold; 
+  color: var(--royal-maroon); 
+}
+
 .cart-total-footer {
   text-align: right;
   font-size: 1.5rem;
@@ -185,8 +210,63 @@ nav {
   border-top: 2px solid var(--royal-gold);
 }
 
+.empty-msg {
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-style: italic;
+}
+
+/* --- Forms --- */
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
 .btn-order {
-  background: #25D366;
+  background: #25D366; /* WhatsApp Green */
   color: white;
   padding: 15px;
-  border
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.2s;
+}
+
+.btn-order:hover {
+  background: #1ebe57;
+}
+
+/* Specific adjustment for Mobile Screens */
+@media (max-width: 480px) {
+  .nav-container {
+    gap: 10px;
+    padding: 5px;
+  }
+  
+  .nav-container a {
+    font-size: 0.75rem; /* Compact text for very small screens */
+  }
+
+  .floating-cart-middle {
+    padding: 5px 12px;
+    font-size: 0.85rem;
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: var(--deep-black);
+  color: var(--royal-gold);
+  margin-top: 50px;
+}
